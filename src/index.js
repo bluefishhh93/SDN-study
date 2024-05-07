@@ -1,17 +1,18 @@
-const rect = {
-    perimeter: (x, y) => 2 * (x + y),
-    area: (x, y) => x * y
-};
+const rect = require('./rectangle');
 
 function solveRect(length, breadth) {
     console.log(`Solving for rectangle with l = ${length} and b = ${breadth}`);
 
-    if (length <= 0 || breadth <= 0) {
-        console.log(`Rectangle dimensions should be greater than zero: l = ${length}, and b = ${breadth}`);
-    } else {
-        console.log(`The area of the rectangle is ${rect.area(length, breadth)}`);
-        console.log(`The perimeter of the rectangle is ${rect.perimeter(length, breadth)}`);
-    }
+    rect(length, breadth , (err,rectangle) =>{
+        if(err){
+            console.log("ERROR: ", err.message);
+        }
+        else{
+            console.log("The area of the rectangle of dimensions l = " + length + " and b = " + breadth + " is " + rectangle.area());
+            console.log("The perimeter of the rectangle of dimensions l = " + length + " and b = " + breadth + " is " + rectangle.perimeter());
+        }
+    });
+    console.log("This statement after call the react()");
 }
 
 solveRect(2, 4);
